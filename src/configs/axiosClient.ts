@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { LOCAL_STORAGE_KEY, SYSTEM_ERROR } from '~/constants/common';
 import { getLocalStorage } from '~/utils/storage';
-import { LOCAL_STORAGE_KEY, SYSTEM_ERROR } from './config';
 
 const config: AxiosRequestConfig = {
   baseURL: import.meta.env.VITE_API_URL,
