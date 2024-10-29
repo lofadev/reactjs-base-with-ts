@@ -1,11 +1,16 @@
 export function getLocalStorage(key: string) {
-  return localStorage.getItem(key);
+  const storedValue = localStorage.getItem(key);
+  try {
+    return storedValue ? JSON.parse(storedValue) : null;
+  } catch (error) {
+    return null;
+  }
 }
 
-export function setLocalStorage(key: string, value: string) {
-  return localStorage.setItem(key, value);
+export function setLocalStorage(key: string, value: any) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function removeLocalStorage(key: string) {
-  return localStorage.removeItem(key);
+  localStorage.removeItem(key);
 }

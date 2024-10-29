@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import { Footer, Header } from '~/components';
 import { MainStyled } from './styled';
 
-const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
+export const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Header />
@@ -11,5 +11,3 @@ const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
     </>
   );
 };
-
-export default DefaultLayout;
