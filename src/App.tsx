@@ -1,42 +1,32 @@
-import React, { useEffect } from 'react';
-import useThemeDetector from './hooks/useThemeDetector';
-import { RootRoutes } from './routes';
-import { useTheme } from './slices/theme';
-import { savedTheme } from './utils/theme';
-import { useAuth } from './slices/auth';
-import { Spin } from 'antd';
-import { getLocalStorage } from './utils/storage';
-import { LOCAL_STORAGE_KEY } from './constants/common';
+import React, { memo } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+import { I18nextProvider } from 'react-i18next';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+
+import { Suspense } from './components';
+import i18n from './configs/i18n';
+import { AppRoutes } from './routes';
+import { store } from './store';
+import { GlobalStyled, ThemeProvider } from './styles';
 
 const App: React.FC = () => {
-  const { changeTheme } = useTheme();
-  const { isLoading, getMe } = useAuth();
-  const isSystemDark = useThemeDetector();
-
-  useEffect(() => {
-    const token = getLocalStorage(LOCAL_STORAGE_KEY.TOKEN);
-
-    if (token) {
-      getMe();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (isSystemDark) {
-      changeTheme('dark');
-      savedTheme('dark');
-    } else {
-      changeTheme('light');
-      savedTheme('light');
-    }
-  }, [isSystemDark, changeTheme]);
-
   return (
-    <Spin spinning={isLoading}>
-      <RootRoutes />
-    </Spin>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
+        <HelmetProvider>
+          <BrowserRouter>
+            <ThemeProvider>
+              <GlobalStyled />
+              <React.Suspense fallback={<Suspense />}>
+                <AppRoutes />
+              </React.Suspense>
+            </ThemeProvider>
+          </BrowserRouter>
+        </HelmetProvider>
+      </I18nextProvider>
+    </Provider>
   );
 };
 
-export default App;
+export default memo(App);

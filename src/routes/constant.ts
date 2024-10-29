@@ -1,29 +1,23 @@
-import Login from '~/pages/auth/login';
-import Register from '~/pages/auth/register';
+import { lazy } from 'react';
+import { ROUTE_NAMES } from '~/constants';
 import Home from '~/pages/home';
-import NotFound from '~/pages/not-found';
 import { TRoute } from '~/types/route';
 
-export const ROUTER_PATH = {
-  HOME: '/',
-  AUTH: {
-    LOGIN: '/login',
-    REGISTER: '/register',
-  },
-  NOTFOUND: '*',
-};
+const Register = lazy(() => import('~/pages/auth/register'));
+const NotFound = lazy(() => import('~/pages/not-found'));
+const Login = lazy(() => import('~/pages/auth/login'));
 
 export const PUBLIC_ROUTES: TRoute[] = [
   {
-    path: ROUTER_PATH.HOME,
+    path: ROUTE_NAMES.HOME,
     component: Home,
   },
   {
-    path: ROUTER_PATH.AUTH.LOGIN,
+    path: ROUTE_NAMES.AUTH.LOGIN,
     component: Login,
   },
   {
-    path: ROUTER_PATH.AUTH.REGISTER,
+    path: ROUTE_NAMES.AUTH.REGISTER,
     component: Register,
   },
 ];
@@ -32,7 +26,7 @@ export const PRIVATE_ROUTES: TRoute[] = [];
 
 export const GLOBAL_ROUTES: TRoute[] = [
   {
-    path: ROUTER_PATH.NOTFOUND,
+    path: ROUTE_NAMES.NOTFOUND,
     component: NotFound,
   },
 ];

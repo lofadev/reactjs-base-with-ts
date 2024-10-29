@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserModel } from '~/models';
-import { useAppDispatch, useAppSelector } from '~/store/hooks';
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { IAuthState } from '~/types/auth';
 
 const initialState: IAuthState = {
