@@ -10,6 +10,7 @@ import i18n from './configs/i18n';
 import ThemeProvider from './slices/theme/ThemeProvider';
 import { store } from './store';
 import GlobalStyled from './styles/globalStyled';
+import { Suspense } from './components';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <HelmetProvider>
             <BrowserRouter>
               <GlobalStyled />
-              <App />
+              <React.Suspense fallback={<Suspense />}>
+                <App />
+              </React.Suspense>
             </BrowserRouter>
           </HelmetProvider>
         </ThemeProvider>

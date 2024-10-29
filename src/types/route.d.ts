@@ -2,6 +2,6 @@ import { PropsWithChildren } from 'react';
 
 export type TRoute = {
   path: string;
-  component: () => JSX.Element;
+  component: LazyExoticComponent<() => Element>;
   layout?: (({ chilren }: PropsWithChildren) => JSX.Element) | null;
 };

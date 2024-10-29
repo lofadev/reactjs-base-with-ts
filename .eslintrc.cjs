@@ -54,7 +54,6 @@ module.exports = {
     '@typescript-eslint/space-before-function-paren': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'error',
-    'no-empty-function': 'error',
     'no-duplicate-imports': 'warn',
     'react/jsx-key': [
       'error',
@@ -65,7 +64,6 @@ module.exports = {
       },
     ],
     'react/prop-types': 'off',
-    'no-empty-function': 'warn',
     'no-multiple-empty-lines': 'warn',
     'no-restricted-imports': 'error',
     'no-empty': ['error', { allowEmptyCatch: true }],

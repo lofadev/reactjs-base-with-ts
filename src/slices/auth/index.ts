@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { useAppSelector } from '~/store/hooks';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserModel } from '~/models';
+import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { IAuthState } from '~/types/auth';
 
 const initialState: IAuthState = {
@@ -8,13 +9,26 @@ const initialState: IAuthState = {
   error: null,
 };
 
-const slice = createSlice({ name: 'auth', initialState, reducers: {} });
+const slice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    getMe: () => {},
+
+    getMeSuccess: (state, action: PayloadAction<UserModel>) => {
+      state.meInfo = action.payload;
+    },
+  },
+});
 
 const { reducer, actions } = slice;
 const useAuth = () => {
   const state = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
-  return { ...state };
+  const getMe = () => dispatch(actions.getMe());
+
+  return { ...state, getMe };
 };
 
 export { actions, useAuth };

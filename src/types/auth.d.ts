@@ -1,7 +1,7 @@
-import { IUser } from '~/interfaces/user';
+import { UserModel } from '~/models';
 
 export interface IAuthState {
-  meInfo: IUser | null;
+  meInfo: UserModel | null;
   isLoading: boolean;
   error: any | null;
 }

@@ -28,5 +28,6 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules", "build", "dist", ".eslintrc.cjs", ".prettierrc"]
 }
