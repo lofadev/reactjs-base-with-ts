@@ -5,6 +5,7 @@ import { BaseOptionType, DefaultOptionType } from 'antd/es/select';
 import ErrorMessage from '../error-message';
 import { SelectStyled } from './styled';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface IProps extends SelectProps<any, DefaultOptionType | BaseOptionType> {
   name: string;
 }

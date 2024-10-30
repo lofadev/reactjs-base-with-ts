@@ -2,6 +2,7 @@ import { Select } from 'antd';
 import { BaseOptionType, DefaultOptionType, SelectProps } from 'antd/es/select';
 import styled from 'styled-components';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SelectStyled = styled(Select)<SelectProps<any, DefaultOptionType | BaseOptionType>>`
   font-size: 16px;
   min-width: 400px;

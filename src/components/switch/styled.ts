@@ -9,7 +9,7 @@ export const SwitchStyled = styled(Switch)`
 
   &,
   &.ant-switch:hover:not(.ant-switch-disabled) {
-    background-color: ${({ theme }) => theme.lightGray};
+    background-color: ${({ theme }) => theme.asd};
   }
 
   .ant-switch-handle {

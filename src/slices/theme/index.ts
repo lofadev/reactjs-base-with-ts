@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_KEY } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { themes } from '~/styles/theme';
+import { themes } from '~/styles';
 import { IThemeState, TThemeType } from '~/types/theme';
 import { getLocalStorage } from '~/utils/storage';
 import { checkValidTheme, savedTheme } from '~/utils/theme';

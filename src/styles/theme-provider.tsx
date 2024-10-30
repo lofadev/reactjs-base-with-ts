@@ -1,12 +1,11 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { ThemeProvider as OriginalThemeProvider } from 'styled-components';
+import { useTheme } from '~/slices/theme';
 import { TThemeType } from '~/types/theme';
 import { checkValidTheme } from '~/utils/theme';
-import { useTheme } from '../slices/theme';
 
 export const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const { theme } = useTheme();
-  const { changeTheme } = useTheme();
+  const { theme, changeTheme } = useTheme();
 
   useEffect(() => {
     const themeValue = checkValidTheme() as TThemeType;

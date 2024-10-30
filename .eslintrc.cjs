@@ -52,7 +52,7 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-use-before-define': 'error',
     'no-duplicate-imports': 'warn',
     'react/jsx-key': [

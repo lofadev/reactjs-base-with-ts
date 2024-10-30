@@ -8,7 +8,7 @@ import { Suspense } from './components';
 import i18n from './configs/i18n';
 import { AppRoutes } from './routes';
 import { store } from './store';
-import { GlobalStyled, ThemeProvider } from './styles';
+import { ConfigProvider, GlobalStyled, ThemeProvider } from './styles';
 
 const App: React.FC = () => {
   return (
@@ -16,12 +16,14 @@ const App: React.FC = () => {
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
           <BrowserRouter>
-            <ThemeProvider>
-              <GlobalStyled />
-              <React.Suspense fallback={<Suspense />}>
-                <AppRoutes />
-              </React.Suspense>
-            </ThemeProvider>
+            <ConfigProvider>
+              <ThemeProvider>
+                <GlobalStyled />
+                <React.Suspense fallback={<Suspense />}>
+                  <AppRoutes />
+                </React.Suspense>
+              </ThemeProvider>
+            </ConfigProvider>
           </BrowserRouter>
         </HelmetProvider>
       </I18nextProvider>
