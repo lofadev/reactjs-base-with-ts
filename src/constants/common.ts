@@ -1,3 +1,5 @@
+import { ThemeType } from '~/types/theme';
+
 export const LANGUAGE = {
   EN: 'en',
   VI: 'vi',
@@ -39,7 +41,7 @@ export const HTTP_STATUS = {
   GATEWAY_TIMEOUT: 504,
 };
 
-export const THEME_TYPE = {
+export const THEME_TYPE: ThemeType = {
   LIGHT: 'light',
   DARK: 'dark',
 };

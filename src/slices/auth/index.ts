@@ -6,6 +6,7 @@ import { IAuthState } from '~/types/auth';
 const initialState: IAuthState = {
   meInfo: null,
   isLoading: false,
+  error: null,
 };
 
 const slice = createSlice({
