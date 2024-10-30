@@ -6,11 +6,14 @@ export const GlobalStyled = createGlobalStyle`
   *:after {
     box-sizing: border-box;
   }
+  
   * {
     margin: 0;
     padding: 0;
     font: inherit;
+    color: inherit;
   }
+
   img,
   picture,
   svg,

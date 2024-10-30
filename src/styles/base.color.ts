@@ -1,4 +1,4 @@
-const lightTheme = {
+export const baseLightTheme = {
   primary: '#13C4CE',
   secondary: '#3374CD',
   white: '#fff',
@@ -9,9 +9,9 @@ const lightTheme = {
   textDanger: '#F2596B',
 };
 
-export type Theme = typeof lightTheme;
+export type BaseTheme = typeof baseLightTheme;
 
-const darkTheme: Theme = {
+export const baseDarkTheme: BaseTheme = {
   primary: '#13C4CE',
   secondary: '#3374CD',
   white: '#fff',
@@ -20,9 +20,4 @@ const darkTheme: Theme = {
 
   textPrimary: '#3F4F5F',
   textDanger: '#F2596B',
-};
-
-export const themes = {
-  light: lightTheme,
-  dark: darkTheme,
 };

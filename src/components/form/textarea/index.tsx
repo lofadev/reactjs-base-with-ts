@@ -22,9 +22,7 @@ const FieldText: React.FC<IProps> = ({ label, name, ...props }) => {
     let translatedError: string | undefined;
 
     if (!!error && error.message)
-      translatedError = error.type?.includes('required')
-        ? t(error.message, { field: t(name as any) })
-        : t(error.message);
+      translatedError = error.type?.includes('required') ? t(error.message, { field: name }) : t(error.message);
 
     return translatedError;
     // eslint-disable-next-line react-hooks/exhaustive-deps
