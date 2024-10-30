@@ -9,7 +9,7 @@ import { getLocalStorage } from '~/utils/storage';
 
 export const PrivateRoute: React.FC<TRoute> = ({ component: Component, layout }) => {
   const Layout = layout ? layout : layout === null ? Fragment : DefaultLayout;
-  const { meInfo, isLoading } = useAuth();
+  const { meInfo, isLoading, error } = useAuth();
   const token = getLocalStorage(LOCAL_STORAGE_KEY.TOKEN);
 
   return (
@@ -19,6 +19,8 @@ export const PrivateRoute: React.FC<TRoute> = ({ component: Component, layout })
           <Layout>
             <Component />
           </Layout>
+        ) : error ? (
+          <Navigate to={ROUTE_NAMES.AUTH.LOGIN} replace={true} />
         ) : null
       ) : (
         <Navigate to={ROUTE_NAMES.AUTH.LOGIN} replace={true} />

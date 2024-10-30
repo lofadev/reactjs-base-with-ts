@@ -54,6 +54,7 @@ export const GlobalStyled = createGlobalStyle`
     font-size: 16px;
     line-height: 1;
     position: relative;
+    background-color: ${({ theme }) => theme.base.bgPrimary};
+    color: ${({ theme }) => theme.base.textPrimary};
   }
-  
 `;

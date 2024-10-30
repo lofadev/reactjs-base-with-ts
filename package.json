@@ -51,7 +51,8 @@
     "prettier": "^3.3.3",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
-    "vite-plugin-checker": "^0.7.2"
+    "vite-plugin-checker": "^0.7.2",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

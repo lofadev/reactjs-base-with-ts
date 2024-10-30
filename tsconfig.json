@@ -28,7 +28,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "types": ["vite-plugin-svgr/client"]
   },
   "include": ["src", "vite.config.ts"],
   "exclude": ["node_modules", "build", "dist", ".eslintrc.cjs", ".prettierrc"]
