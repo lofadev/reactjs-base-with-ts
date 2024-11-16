@@ -9,7 +9,7 @@ const resources = {
   en: {
     translation: en,
   },
-  fr: {
+  vi: {
     translation: vi,
   },
 };
@@ -18,8 +18,8 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: LANGUAGE.EN,
-    fallbackLng: LANGUAGE.EN,
+    lng: LANGUAGE.VI,
+    fallbackLng: LANGUAGE.VI,
     interpolation: {
       escapeValue: false,
     },
