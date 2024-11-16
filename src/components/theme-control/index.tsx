@@ -1,7 +1,7 @@
-import { Switch } from 'antd';
 import { Dark, Light } from '~/assets';
 import { THEME_TYPE } from '~/constants';
 import { useTheme } from '~/slices/theme';
+import { Switch } from '../switch';
 
 export const ThemeControl = () => {
   const { selected, changeTheme } = useTheme();
@@ -13,7 +13,7 @@ export const ThemeControl = () => {
       checked={selected === THEME_TYPE.LIGHT}
       onChange={() => {
         const anotherTheme = selected === THEME_TYPE.LIGHT ? THEME_TYPE.DARK : THEME_TYPE.LIGHT;
-        void changeTheme(anotherTheme);
+        changeTheme(anotherTheme);
       }}
     />
   );
