@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGE, LOCAL_STORAGE_KEY } from '~/constants';
+import { changeLanguage, checkValidLanguage } from '~/utils/language';
 import { getLocalStorage, setLocalStorage } from '~/utils/storage';
 import { Switch } from '../switch';
 
@@ -14,6 +15,12 @@ export const LanguageControl = () => {
     setLocalStorage(LOCAL_STORAGE_KEY.LANGUAGE, anotherLanguage);
     setLanguage(anotherLanguage);
   }, [i18n, language]);
+
+  useEffect(() => {
+    const languageValue = checkValidLanguage();
+    changeLanguage(languageValue);
+    setLanguage(languageValue);
+  }, []);
 
   return (
     <Switch
