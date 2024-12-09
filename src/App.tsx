@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Suspense } from './components';
+import { Suspense, ToastMessage } from './components';
 import i18n from './configs/i18n';
 import { AppRoutes } from './routes';
 import { store } from './store';
@@ -19,6 +19,7 @@ const App: React.FC = () => {
             <ConfigProvider>
               <ThemeProvider>
                 <GlobalStyled />
+                <ToastMessage />
                 <React.Suspense fallback={<Suspense />}>
                   <AppRoutes />
                 </React.Suspense>

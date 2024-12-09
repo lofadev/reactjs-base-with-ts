@@ -10,6 +10,6 @@ interface IProps {
   message?: string;
 }
 
-const ErrorMessage: React.FC<IProps> = ({ message }) => <ErrorStyled>{message}</ErrorStyled>;
+const FormError: React.FC<IProps> = ({ message }) => <ErrorStyled>{message}</ErrorStyled>;
 
-export default ErrorMessage;
+export default FormError;
