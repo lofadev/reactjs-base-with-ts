@@ -1,9 +1,9 @@
 import { TextAreaProps } from 'antd/es/input';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Controller, useController, useFormContext } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 
-import ErrorMessage from '../error-message';
+import FormError from '../form-error';
+import { useTranslateError } from '../hook';
 import { LabelStyled, TextAreaStyled } from './styled';
 
 interface IProps extends TextAreaProps {
@@ -16,30 +16,21 @@ const FieldText: React.FC<IProps> = ({ label, name, ...props }) => {
   const {
     fieldState: { error },
   } = useController({ name, control });
-  const { t, i18n } = useTranslation();
 
-  const translationError = useMemo(() => {
-    let translatedError: string | undefined;
-
-    if (!!error && error.message)
-      translatedError = error.type?.includes('required') ? t(error.message, { field: name }) : t(error.message);
-
-    return translatedError;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error, i18n.language]);
+  const translationError = useTranslateError(name, error);
 
   return (
-    <div className="form-group">
-      {!!label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
-      <Controller
-        control={control}
-        name={name}
-        render={({ field }) => (
+    <Controller
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <>
+          {!!label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
           <TextAreaStyled rows={5} {...field} {...props} status={error ? 'error' : ''} id={name} />
-        )}
-      />
-      {!!error && <ErrorMessage message={translationError} />}
-    </div>
+          {!!error && <FormError message={translationError} />}
+        </>
+      )}
+    />
   );
 };
 

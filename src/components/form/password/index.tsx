@@ -1,10 +1,10 @@
 import { InputProps } from 'antd';
-import { useMemo } from 'react';
 import { Controller, useController, useFormContext } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 
-import ErrorMessage from '../error-message';
-import { InputStyled, LabelStyled } from './styled';
+import FormError from '../form-error';
+import FormLabel from '../form-label';
+import { useTranslateError } from '../hook';
+import { InputStyled } from './styled';
 
 interface IProps extends InputProps {
   name: string;
@@ -16,28 +16,21 @@ const FieldPassword: React.FC<IProps> = ({ label, name, ...props }) => {
   const {
     fieldState: { error },
   } = useController({ name, control });
-  const { t, i18n } = useTranslation();
 
-  const translationError = useMemo(() => {
-    let translatedError: string | undefined;
-
-    if (!!error && error.message)
-      translatedError = error.type?.includes('required') ? t(error.message, { field: name }) : t(error.message);
-
-    return translatedError;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error, i18n.language]);
+  const translationError = useTranslateError(name, error);
 
   return (
-    <div className="form-group">
-      {!!label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
-      <Controller
-        control={control}
-        name={name}
-        render={({ field }) => <InputStyled {...field} {...props} status={error ? 'error' : ''} id={name} />}
-      />
-      {!!error && <ErrorMessage message={translationError} />}
-    </div>
+    <Controller
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <>
+          {!!label && <FormLabel htmlFor={name}>{label}</FormLabel>}
+          <InputStyled {...field} {...props} status={error ? 'error' : ''} id={name} />
+          {!!error && <FormError message={translationError} />}
+        </>
+      )}
+    />
   );
 };
 
