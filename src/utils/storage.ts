@@ -2,7 +2,7 @@ export function getLocalStorage(key: string) {
   const storedValue = localStorage.getItem(key);
   try {
     return storedValue ? JSON.parse(storedValue) : null;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
