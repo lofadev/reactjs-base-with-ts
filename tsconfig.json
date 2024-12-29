@@ -2,16 +2,18 @@
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -20,10 +22,9 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
@@ -31,6 +32,6 @@
     },
     "types": ["vite-plugin-svgr/client"]
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "build", "dist", ".eslintrc.cjs", ".prettierrc"]
+  "include": ["src", "src/**/*"],
+  "exclude": ["node_modules", "build", "dist"]
 }

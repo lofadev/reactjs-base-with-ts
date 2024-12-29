@@ -1,36 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse, CreateAxiosDefaults } from 'axios';
 import { LOCAL_STORAGE_KEY, SYSTEM_ERROR } from '~/constants/common';
 import { getLocalStorage } from '~/utils/storage';
 
-const config: AxiosRequestConfig = {
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    Authorization: getLocalStorage(LOCAL_STORAGE_KEY.TOKEN),
-  },
-  timeout: 10000,
-  timeoutErrorMessage: SYSTEM_ERROR.TIMEOUT_ERROR.MESSAGE,
+const createAxiosInstance = (
+  baseURL: string,
+  configs: CreateAxiosDefaults = { timeout: 10000, timeoutErrorMessage: SYSTEM_ERROR.TIMEOUT_ERROR.MESSAGE },
+): AxiosInstance => {
+  const instance = axios.create({ baseURL, ...configs });
+
+  // Request Interceptor
+  instance.interceptors.request.use(
+    (config) => {
+      const token = getLocalStorage(LOCAL_STORAGE_KEY.TOKEN);
+      if (token) {
+        config.headers.Authorization = token;
+      }
+      return config;
+    },
+    (error: AxiosError) => Promise.reject(error),
+  );
+
+  // Response Interceptor
+  instance.interceptors.response.use(
+    (response: AxiosResponse) => response.data,
+    (error: AxiosError) => {
+      if (error.response) {
+        return Promise.reject(error.response.data);
+      }
+      return Promise.reject(error);
+    },
+  );
+
+  return instance;
 };
 
-const AxiosClient: AxiosInstance = axios.create(config);
+const axiosClient = createAxiosInstance(import.meta.env.VITE_API_URL);
 
-const handleRequestSuccess = (config: InternalAxiosRequestConfig<any>) => {
-  return config;
-};
-
-const handleRequestError = (error: AxiosError) => {
-  if (error.response) {
-    return error.response.data;
-  }
-
-  return Promise.reject(error);
-};
-
-const handleResponseSuccess = ({ data }: AxiosResponse): AxiosResponse => data;
-
-const handleResponseError = (error: AxiosError) => Promise.reject(error.response?.data);
-
-AxiosClient.interceptors.request.use(handleRequestSuccess, handleRequestError);
-AxiosClient.interceptors.response.use(handleResponseSuccess, handleResponseError);
-
-export default AxiosClient;
+export { axiosClient };

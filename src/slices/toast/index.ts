@@ -11,7 +11,7 @@ const slice = createSlice({
   name,
   initialState,
   reducers: {
-    setToastMessage(state, action: PayloadAction<IToastMessageParams>) {
+    setToastMessage: (state, action: PayloadAction<IToastMessageParams>) => {
       state.toast_message = action.payload;
     },
     resetToastMessage: (state) => {
@@ -24,11 +24,10 @@ const { actions, reducer } = slice;
 
 const useToastMessage = () => {
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state.toast_message);
 
   const setToastMessage = (payload: IToastMessageParams) => dispatch(actions.setToastMessage(payload));
   const resetToastMessage = () => dispatch(actions.resetToastMessage());
-
-  const state = useAppSelector((state) => state.toast_message);
 
   return {
     ...state,

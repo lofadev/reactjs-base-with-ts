@@ -15,7 +15,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
-          <BrowserRouter>
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <ConfigProvider>
               <ThemeProvider>
                 <GlobalStyled />

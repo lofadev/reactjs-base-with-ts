@@ -23,8 +23,8 @@ const slice = createSlice({
 
 const { reducer, actions } = slice;
 const useAuth = () => {
-  const state = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state.auth);
 
   const getMe = () => dispatch(actions.getMe());
 
